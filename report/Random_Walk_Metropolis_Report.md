@@ -33,20 +33,20 @@ This is the well-known **Laplace (double exponential) distribution**, with mean 
 
 **Step 2.** For $i = 1, \dots, N$:
 
-1. Draw a candidate $x^{*} \sim \text{Normal}(x_{i-1}, s)$.
-2. Compute the acceptance ratio $r(x^{*}, x_{i-1}) = \dfrac{f(x^{*})}{f(x_{i-1})}$.
+1. Draw a candidate $x^{\ast} \sim \text{Normal}(x_{i-1}, s)$.
+2. Compute the acceptance ratio $r(x^{\ast}, x_{i-1}) = \dfrac{f(x^{\ast})}{f(x_{i-1})}$.
 3. Draw $u \sim \text{Uniform}(0, 1)$.
-4. If $u < r(x^{*}, x_{i-1})$, accept: set $x_i = x^{*}$. Otherwise reject: set $x_i = x_{i-1}$.
+4. If $u < r(x^{\ast}, x_{i-1})$, accept: set $x_i = x^{\ast}$. Otherwise reject: set $x_i = x_{i-1}$.
 
 **Numerical stability tip:** rather than comparing $u < r$ directly — which risks numerical underflow for very small exponentials — the implementation uses the equivalent **log-ratio criterion**:
 
-$$\log u < \log r(x^{*}, x_{i-1}) = \log f(x^{*}) - \log f(x_{i-1})$$
+$$\log u < \log r(x^{\ast}, x_{i-1}) = \log f(x^{\ast}) - \log f(x_{i-1})$$
 
 ---
 
 ## 3. Part (a) — Histogram, KDE & Monte Carlo Estimates (N = 10,000, s = 1)
 
-Starting from $x_0 = 0$, at each step a candidate $x^{*}$ is drawn from a Normal distribution centred at the current value with standard deviation $s = 1$. The generated samples were used to build a histogram and a kernel density estimate (KDE), with the true $f(x)$ overlaid for comparison.
+Starting from $x_0 = 0$, at each step a candidate $x^{\ast}$ is drawn from a Normal distribution centred at the current value with standard deviation $s = 1$. The generated samples were used to build a histogram and a kernel density estimate (KDE), with the true $f(x)$ overlaid for comparison.
 
 ![Histogram, KDE, and true density overlay](assets/fig1_histogram_kde.png)
 
