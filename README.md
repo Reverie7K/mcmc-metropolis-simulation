@@ -1,8 +1,6 @@
-# 🎲 Random Walk Metropolis: Sampling a Laplace Distribution
+#  Random Walk Metropolis: Sampling a Laplace Distribution
 
 A from-scratch implementation of the **Random Walk Metropolis** algorithm (a member of the Markov Chain Monte Carlo family), used to sample from a Laplace distribution and formally checked for convergence using the **Gelman–Rubin $\hat{R}$ diagnostic**.
-
-Originally completed as part of the **ST2195 – Programming for Data Science** coursework; this repo contains the MCMC portion of that project (the airline flight-delay analysis is tracked separately).
 
 > 📄 **Full write-up:** [`report/Random_Walk_Metropolis_Report.md`](report/Random_Walk_Metropolis_Report.md)
 
@@ -16,7 +14,7 @@ The goal is to generate samples $x_1, \dots, x_N$ from
 
 $$f(x) = \frac{1}{2}e^{-|x|}$$
 
-— the Laplace (double exponential) distribution — using only a simple accept/reject random-walk rule, without ever sampling from $f(x)$ directly. Two questions are addressed:
+— the Laplace (double exponential) distribution using only a simple accept/reject random-walk rule, without ever sampling from $f(x)$ directly. Two questions are addressed:
 
 | # | Question |
 |---|---|
@@ -34,7 +32,7 @@ $$f(x) = \frac{1}{2}e^{-|x|}$$
 │   ├── Random_Walk_Metropolis_Report.md   ← full formatted write-up
 │   └── assets/                            ← figures used in the report
 └── code/
-    └── random_walk_metropolis.py          ← analysis script (place your script here)
+    └── random_walk_metropolis.py          ← analysis script 
 ```
 
 ---
@@ -49,7 +47,7 @@ Starting at $x_0 = 0$, each candidate is drawn from $\text{Normal}(x_{i-1}, s)$ 
 ### (b) Convergence diagnostic — Gelman–Rubin $\hat{R}$ (N = 2000, J = 4)
 Four chains were run from different starting points ($x_0 \in \{0,1,2,3\}$) and compared via within-chain vs. between-chain variance.
 
-- **Finding:** at a tiny step size ($s = 0.001$), the chain barely moves and $\hat{R} = 56.95$ — a clear convergence failure. At a well-chosen step size ($s \approx 0.738$), $\hat{R} \approx 1.0001$ — well under the conventional $\hat{R} < 1.05$ threshold. The optimal step-size region for this target is roughly $s \in [0.5, 1.0]$.
+- **Finding:** at a tiny step size ($s = 0.001$), the chain barely moves and $\hat{R} = 56.95$ a clear convergence failure. At a well-chosen step size ($s \approx 0.738$), $\hat{R} \approx 1.0001$ — well under the conventional $\hat{R} < 1.05$ threshold. The optimal step-size region for this target is roughly $s \in [0.5, 1.0]$.
 
 Full derivations, formulas, and both figures are in the [full report](report/Random_Walk_Metropolis_Report.md).
 
